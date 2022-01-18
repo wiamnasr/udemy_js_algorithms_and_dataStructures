@@ -27,7 +27,9 @@
                         => Once we exhaust one arr, push in all remaining values from the other arr 
     
 
-    Building a merging function to understand Merge Sort, assuming the arrays are sorted, only returning the combination of those 2 sorted arrays below:
+    Building a merging function to understand Merge Sort, assuming the arrays are sorted, only returning the combination of those 2 sorted arrays below
+
+    
 */
 
 // Defining the function
@@ -68,4 +70,42 @@ function merge(arr1, arr2) {
   return results;
 }
 
-console.log(merge([1, 10, 50], [2, 14, 99, 100]));
+// console.log(merge([1, 10, 50], [2, 14, 99, 100]));
+
+/*
+    Now that the Merge function is implemented, its time to take care of the sorting part of Merge sort
+
+    =>  Implements recursion
+
+    1)  We have our merge function that takes 2 sorted arrays, the goal is to keep breaking a single array in halves
+
+    2)  We can use slice to accomplish that
+
+    3)  Call merge sort again recursively on each half to keep breaking them into halves
+
+    4)  The base case here is when the lengths of the arrays is less than or equal to one (1 or 0)
+
+    5)  Once we have those small arrays, we merge them back using the merge function written up, until we are back at the full length of the array
+
+    6)  Once array has been merged back together, we return the merged array at the end
+
+
+*/
+
+// Defining the mergeSort function that takes in a single array
+
+function mergeSort(arr) {
+  // Base case
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  // Recursive case
+  // defining mid-point
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+console.log(mergeSort([10, 24, 76, 72, 1, 9]));
