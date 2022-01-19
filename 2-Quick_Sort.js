@@ -80,14 +80,83 @@ function pivot(arr, start = 0, end = arr.length + 1) {
 
       // swap array[i] with array[swapIdx]
       swap(arr, swapIdx, i);
-      //   console.log(arr);
+      // console.log(arr);
     }
   }
   //   Swapping the starting element with the pivot index
   swap(arr, start, swapIdx); //  We are not swapping the pivot because pivot is the value, start is the index of that pivot
 
+  // console.log(arr);
   //   returning the swap index
   return swapIdx;
 }
 
 // console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
+
+/*
+      _________________________________________________________________________________________
+
+
+  The above needs to be implemented again and again on both sides, until we hit the one item arrays#
+
+  This will be accomplished with the quick sort implementation below
+
+  2)  Quicksort implementation
+
+                -----------------------------
+                        PSEUDO-CODE
+                -----------------------------
+
+          =>  With the pivot helper function finished
+          
+          =>  We pass in an array, the helper function will take the first item and figure out where it should go
+
+          =>  After putting all the items to left and right, the helper function returns an index
+
+          =>  In out quicksort function, once finding out the index of the first pivot point
+
+          =>  We will recursively call the same function again on the left and right sides of the pivot point, once its moved to the returned index
+
+          =>  We will call the function on both sides not including the pivot, as its in place
+
+          =>  We are not making new arrays -> this is happening in place
+
+          =>  The base case is hence not to simply check if the array has one item in it
+
+          =>  The base case is to check if the sub-array has one item in it
+
+*/
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  // We want to keep running the recursive code, if left < right
+  // As soon as they are equal, it means we are looking at one element -> remember, left and right are just pointers inside the full array
+  if (left < right) {
+    // Calling pivot with the arr. The very first time through, we want to call pivot() on the whole array
+    // but then the recursive function will call it again many times on different sub-arrays with different start and end point
+    let pivotIndex = pivot(arr, left, right);
+
+    // Left side:
+    // the right side here (where we are going to stop), make sure to not include the pivot index
+    quickSort(arr, left, pivotIndex - 1);
+
+    // Right side:
+    // the left side here (where we are going to start), make sure to not include the pivot index
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  //  Return the array at the very end
+  return arr;
+}
+
+console.log(quickSort([4, 6, 9, 1, 2, 5, 3]));
+
+/*
+          _____________________________________________________________________________________________
+
+          Big O of Quick sort
+
+          =>  Time Complexity:
+                - Best & Average Time complexity: O(n log n)
+                - Worst Time Complexity: O(n^2)
+
+          =>  Space Complexity: O(log n)
+*/
