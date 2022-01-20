@@ -80,3 +80,44 @@ function mostDigits(nums) {
 }
 
 // console.log(mostDigits([23, 567, 89, 12234324, 90])); //      returns 8
+
+/*
+      _________________________________________________________________________________________
+
+
+  
+
+  2)  RadixSort implementation
+
+                -----------------------------
+                        PSEUDO-CODE
+                -----------------------------
+
+          =>    With the helper functions set
+
+          =>    Now we need to call the helper methods in a loop and make the buckets
+
+          =>    For that we define a function that accepts a list of numbers
+
+          =>    it then has to figure out how many digits the largest number has
+
+          =>    We then need to loop according to the number of digits of the largest number
+                ---> e.g. if largest digit number in the list [1, 11, 111, 1111, 22, 333] is 1111 then we need to loop 4 times --> 4 digits
+
+          =>    With each loop started from 0 to the number of digits
+                -->     Create buckers for each digit (0 to 9)
+                        -       a bucket is just an empty array
+                        -       will have an array that has 10 sub-arrays
+                        -       all sub-arrays start out empty
+                                        (indexes 0 to 9 are empty arrays)
+                        -       Each time through this loop, take each number, put it in its relevant bucket
+                        -       number placement should be based on its kth digit -> starting at zero, we use the zeroth digit (starting from the right with our helper functions), then first and second digits and so on until end of the loop
+
+
+        =>      Replace existing array with the values in our buckets, starting with 0, going up to 9 --> At this point they are beginning to get sorted, by the end of the loop we get the sorted list
+                -       There are 2 loops:
+                        >       The outer loop, which happens same number of times as the count of digits of the largest number
+                        >       The inner loop that acts on each number in the list and does something to it
+
+        =>      Return list at the end
+*/
