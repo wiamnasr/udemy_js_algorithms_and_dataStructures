@@ -145,3 +145,18 @@ function radixSort(nums) {
 }
 
 radixSort([23, 345, 5467, 12, 2345, 9852]);
+
+/*
+          _____________________________________________________________________________________________
+
+          Big O of Radix sort - controversial as it has to do with how numbers are actually stored in memory
+
+          -> important: if we are dealing with all unique, randomly distributed data, then time complexity becomes n log n, because of the way computers store information
+
+          =>  Time Complexity:
+                - Best, Average and Worst Time complexity: O(nk)
+                        ---> where k is the length of those numbers (num of digits)
+                
+
+          =>  Space Complexity: O(n + k)
+*/
