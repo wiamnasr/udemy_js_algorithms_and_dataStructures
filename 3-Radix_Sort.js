@@ -121,3 +121,27 @@ function mostDigits(nums) {
 
         =>      Return list at the end
 */
+
+function radixSort(nums) {
+  let maxDigitCount = mostDigits(nums);
+
+  for (let k = 0; k < maxDigitCount; k++) {
+    // buckets
+    // using array.from passing a length of 10 and telling each one to be an empty sub arrays
+    // digitBuckets is basically an array of 10 empty arrays
+    let digitBuckets = Array.from({ length: 10 }, () => []);
+
+    // loop over every number, take the individual number (nums[i]) and figure out at index 'k' for each number, what value we get
+    for (let i = 0; i < nums.length; i++) {
+      let digit = getDigit(nums[i], k);
+      digitBuckets[digit].push(nums[i]);
+    }
+    console.log(digitBuckets);
+
+    nums = [].concat(...digitBuckets);
+    console.log(nums);
+  }
+  return nums;
+}
+
+radixSort([23, 345, 5467, 12, 2345, 9852]);
