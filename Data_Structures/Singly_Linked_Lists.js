@@ -68,6 +68,20 @@
                 -   Return the value of removed node
 
 
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    Shifting PSEUDO-CODE
+                -----------------------------
+
+                -   No nodes? => return undefined
+
+                -   Store current head property in a var
+
+                -   Set head property to be the current head's next property
+
+
 
 */
 
@@ -118,7 +132,44 @@ class SinglyLinkedList {
       important to note in this method, when we remove the last item, resetting the tail to be the item before it is tricky with singly linked lists
       we need to traverse from the beginning up until the last item after pop => remember linked lists are not indexed and singly linked lists are linked in one direction
     */
+
+    if (!this.head) {
+      return undefined;
+    }
+
+    // when looping, will have 2 variables. 'current' will hit the end, 'newTail' will become the new tail
+    // move current, check if end of list, if not move new tail then repeat until end of list, then dont move newTail, rather set as new tail
+
+    // In the beginning they both are the same thing
+    var current = this.head;
+    var newTail = current;
+
+    // loop over, while there is something (current.next)
+    while (current.next) {
+      // newTail is always lagging behind
+      newTail = current;
+      current = current.next;
+    }
+    // moving the tail
+    this.tail = newTail;
+
+    // setting next to be equal null to sever the connection
+    this.tail.next = null;
+
+    // decrement length
+    this.length--;
+
+    // after removing the last item in the list, make sure to account for head and tail values as they are set to equal each other
+    // this is a clunky solution but works, other solutions can be more practical
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return current;
   }
+
+  shift() {}
 }
 
 /*
@@ -140,4 +191,19 @@ console.log(first.next.next.next.next);
 var list = new SinglyLinkedList();
 list.push("Hello");
 list.push("Goodbye");
+list.push("!!!!!!!!");
+// console.log(list);
+list.pop();
+
+console.log(list);
+
+list.pop();
+
+console.log(list);
+
+list.pop();
+
+console.log(list);
+list.pop();
+
 console.log(list);
