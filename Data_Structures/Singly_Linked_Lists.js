@@ -31,7 +31,7 @@
 
     
                 -----------------------------
-                        PUSHING PSEUDO-CODE
+                    PUSHING PSEUDO-CODE
                 -----------------------------
 
                 -   Function should accept a value
@@ -42,7 +42,31 @@
 
                 -   Else if head set next property on tail to be the new node and update the tail property to be the newly created node
 
-                -   Finally increment the length by one
+                -   Increment the length by one
+
+                -   Return the linked list
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    Popping PSEUDO-CODE
+                -----------------------------
+
+                -   No nodes in the list? => Return 'undefined'
+
+                -   Otherwise loop through the list until reaching the tail =>  keep a variable to keep track of whatever the last item was
+
+                -   Set 'next' property of the 2nd to last node to be null
+
+                -   Update the tail to be that 2nd to last node
+
+                -   Decrement the length of the list by 1
+
+                -   Return the value of removed node
+
 
 
 */
@@ -74,6 +98,26 @@ class SinglyLinkedList {
         any push (insert at the end) can be done by having the next pointer point at the new value to be inserted at the end and make that the new tail
         No need to traverse the whole list, as long as we keep track of the last item its fast to push values there (tail)
     */
+
+    var newNode = new Node(val);
+
+    //    Edge-case if its empty
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  pop() {
+    /*
+      important to note in this method, when we remove the last item, resetting the tail to be the item before it is tricky with singly linked lists
+      we need to traverse from the beginning up until the last item after pop => remember linked lists are not indexed and singly linked lists are linked in one direction
+    */
   }
 }
 
@@ -94,6 +138,6 @@ console.log(first.next.next.next.next);
 */
 
 var list = new SinglyLinkedList();
-// in this case we dont have to keep track of the '.next' count as above in commented out part, it s been taken care of
 list.push("Hello");
 list.push("Goodbye");
+console.log(list);
