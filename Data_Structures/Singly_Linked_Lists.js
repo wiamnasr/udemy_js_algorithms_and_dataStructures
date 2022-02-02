@@ -81,6 +81,43 @@
 
                 -   Set head property to be the current head's next property
 
+                -   Decrement the length by 1
+
+                -   Return the value of the node removed
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    Unshifting PSEUDO-CODE
+                -----------------------------
+
+                - Define a function that accepts a value that will be added to the beginning
+
+                - Create a new node, using the value passed to the function (like what was done with push)
+
+                - !head ? set head and tail to be newly created node
+
+                - : set newly created node's next property to be the current head property on the list
+
+                - Set the head property on the list to be that newly created node
+
+                - Increment the length of the list by 1
+
+                - Return the linked list
+
+
+          
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    GET PSEUDO-CODE
+                -----------------------------
+
+                
+
 
 
 */
@@ -169,7 +206,47 @@ class SinglyLinkedList {
     return current;
   }
 
-  shift() {}
+  shift() {
+    // no nodes? => return undefined
+    if (!this.head) {
+      return undefined;
+    }
+
+    // storing curr head prop
+    var currentHead = this.head;
+
+    // move curr head over to be the curr head's next node
+    this.head = currentHead.next;
+
+    this.length--;
+
+    // dec len by 1, last decrement, the head will be null but the tail will not, that is not a problem, as soon as we re-assign to the head, the tail will be re-assigned
+    // but better to account for it as below
+    if (this.length === 0) {
+      this.tail = null;
+    }
+
+    // this is the removed head returned
+    return currentHead;
+  }
+
+  unshift(val) {
+    var newNode = new Node(val);
+
+    // checking edge case !head
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      // else statement allows us to avoid infinite self reference
+      newNode.next = this.head;
+
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
 }
 
 /*
@@ -192,18 +269,8 @@ var list = new SinglyLinkedList();
 list.push("Hello");
 list.push("Goodbye");
 list.push("!!!!!!!!");
-// console.log(list);
-list.pop();
-
 console.log(list);
-
-list.pop();
-
-console.log(list);
-
-list.pop();
-
-console.log(list);
-list.pop();
+list.shift();
+list.unshift("bla bla");
 
 console.log(list);
