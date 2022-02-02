@@ -126,7 +126,93 @@
 
                   - loop through the list until reaching the index, returning the node at that specific index
 
+
+          
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    SET PSEUDO-CODE
+                -----------------------------
+                ** Changing the value of a node based on it's position in the Linked List
+                      -> Set accepts 2 things: a position (index) and a value to update the item at that index to
+
+                  - Define a function that accepts an index and a value
+
+                  - Use get method (defined from before) to find the specific node
+
+                  - node not found ? return false
+
+                  - node found ? set the value of that node to be the value passed to the function and return true
+
+
+          
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    INSERT PSEUDO-CODE
+                -----------------------------
+
+              *** Like set, Insert takes an index and a value, however, instead of updating an existing node, insert will insert a new node at specified index
+
+                  - Define a function that takes in index and a value
+
+                  - index < 0 || index > length ? return false
+
+                  - index == list.length ? push a new node to the end of the list
+
+                  - index == 0 ? unshift a new node to the start of the list
+
+                  - : using the get method, access the node at the index - 1
+
+                  - Set the next property on that node to be the new node
+
+                  - Set the next property on the new node to be the previous next
+
+                  - Increment the length
+
+                  - Return true
+
+
+        
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    REMOVE PSEUDO-CODE
+                -----------------------------
+                  *** Removing a node from the linked list at a specific position, it patches up the list around it
                   
+                  - Define a function that accepts an index
+
+                  - index < 0 || index > list.length ? return undefined
+
+                  - index === list.length - 1 ? pop
+
+                  - index === 0 ? shift
+
+                  - : use the get method, access the node at index - 1
+
+                  - Set the next property on that node to be the next of the next node
+
+                  - Decrement the length
+
+                  - Return the value of the removed node
+
+
+                   
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    REVERSE PSEUDO-CODE
+                -----------------------------
+                *** Reversing the linked list in place (without making a copy/duplicate)
+
+                  - 
+
+
 
 
 
@@ -270,6 +356,54 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  set(index, val) {
+    var foundNode = this.get(index);
+
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+
+    return false;
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    // Remember push doesn't return true or false, it returns a whole list
+    // !! is used to transform the result to boolean
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+
+    var newNode = new Node(val);
+    var prev = this.get(index - 1);
+
+    // placeholder variable not to lose the connection
+    var temp = prev.next;
+
+    prev.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    if (index === 0) return this.shift();
+
+    if (index === this.length - 1) return this.pop();
+
+    var previousNode = this.get(index - 1);
+
+    var removed = previousNode.next;
+
+    previousNode.next = removed.next;
+
+    this.length--;
+
+    return removed;
+  }
 }
 
 /*
@@ -296,6 +430,14 @@ list.push("!!!!!!!!");
 list.shift();
 list.unshift("bla bla");
 
-console.log(list.get(1));
+// console.log(list.get(1));
 
-// console.log(list);
+// console.log(list.set(2, "!!!!"));
+// console.log(list.insert(0, "first"));
+list.remove(2);
+
+console.log(list);
+
+list.remove(0);
+
+console.log(list);
