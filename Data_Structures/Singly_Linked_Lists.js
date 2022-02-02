@@ -116,7 +116,17 @@
                     GET PSEUDO-CODE
                 -----------------------------
 
-                
+                *** GET is a method that takes a number(index/position), and returns the item in that position
+                          -> traverse the list that many times (according to the number)
+
+
+                  - Create a function that should accept an index
+
+                  - index < 0 || index >= list.length ? null
+
+                  - loop through the list until reaching the index, returning the node at that specific index
+
+                  
 
 
 
@@ -247,6 +257,19 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    var counter = 0;
+    var current = this.head;
+
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
 }
 
 /*
@@ -269,8 +292,10 @@ var list = new SinglyLinkedList();
 list.push("Hello");
 list.push("Goodbye");
 list.push("!!!!!!!!");
-console.log(list);
+// console.log(list);
 list.shift();
 list.unshift("bla bla");
 
-console.log(list);
+console.log(list.get(1));
+
+// console.log(list);
