@@ -210,7 +210,23 @@
                 -----------------------------
                 *** Reversing the linked list in place (without making a copy/duplicate)
 
-                  - 
+                  - Swap the head and tail
+
+                  - Create a variable (can be called next)
+
+                  - Create another variable called prev
+
+                  - Create a variable called node/current/... and initialize it to the head property
+
+                  - Loop through the list
+
+                  - Set the next variable to be the next property on whatever our current node is (store the current next, so when we change the .next to the item that came before it, we haven't lost that connection forever)
+
+                  - Set the next property on the node to be whatever prev is
+
+                  - Set the prev to be the value of the node variable
+
+                  - Set the node variable to be the value of the next variable
 
 
 
@@ -404,6 +420,36 @@ class SinglyLinkedList {
 
     return removed;
   }
+
+  reverse() {
+    var node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    var next;
+    // we want the end of the tail to be null
+    var prev = null;
+
+    for (var i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
+
+  // This method is to help visualize that our reverse method worked
+  print() {
+    var arr = [];
+    var current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
 }
 
 /*
@@ -434,10 +480,23 @@ list.unshift("bla bla");
 
 // console.log(list.set(2, "!!!!"));
 // console.log(list.insert(0, "first"));
-list.remove(2);
+// list.remove(2);
 
-console.log(list);
+// console.log(list);
 
-list.remove(0);
+// list.remove(0);
+list.reverse();
+list.print();
 
-console.log(list);
+// console.log(list);
+
+/*
+          _____________________________________________________________________________________________
+
+          Big O of Singly Linked Lists
+
+          =>  Time Complexity:
+               
+
+          =>  Space Complexity: 
+*/
