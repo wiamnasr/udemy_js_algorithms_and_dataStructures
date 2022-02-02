@@ -495,8 +495,12 @@ list.print();
 
           Big O of Singly Linked Lists
 
-          =>  Time Complexity:
-               
+            - Insertion: O(1)
 
-          =>  Space Complexity: 
+            - Removal: It depends O(1) || O(N)
+
+            - Searching: O(N)
+
+            - Access: O(N)
+            
 */
