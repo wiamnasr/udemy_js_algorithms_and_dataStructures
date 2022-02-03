@@ -128,6 +128,24 @@
 
                 - : Check index > list.length/2 ? loop through the list starting from the tail and loop towards the middle, return node when found
 
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    SET PSEUDO-CODE
+                -----------------------------
+
+                - Create a variable that is the result of the get method at the index passed to the function
+
+                      ->  If get method returns a valid node, set value of that node to be the value passed to the function
+
+                      ->  Return true
+
+                - : return false
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -246,6 +264,16 @@ class DoublyLinkedList {
     }
     return current;
   }
+
+  set(index, val) {
+    var foundNode = this.get(index);
+
+    if (foundNode != null) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -268,7 +296,11 @@ list.unshift("hola");
 
 list.unshift("bonjour");
 
-list.get(0);
-list.get(3);
+// list.get(0);
+// list.get(3);
 
-// console.log(list);
+console.log(list.set(-10, "test"));
+
+console.log(list.set(-10, "testToo"));
+
+console.log(list.set(2, "cool"));
