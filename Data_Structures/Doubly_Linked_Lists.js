@@ -46,6 +46,30 @@
 
                 -   Return the doubly linked list
 
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    POP PSEUDO-CODE
+                -----------------------------
+
+                -   !tail ? return undefined
+
+                -   : take current tail and store it in a var to be returned later
+
+                -   special case, if the length is 1, set head and tail to be null because the list is now empty
+
+                -   Update the tail to be the previous node
+
+                -   Take the new tail and make its .next = null => also remove the other reference, although technically it may not be a problem, unless someone starts from the removed node and accesses .previous which would give them the entire list! better chop it off
+
+                -   Decrement the length
+
+                -   Return removed value
+
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -79,11 +103,50 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.head) return undefined;
+
+    var poppedNode = this.tail;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+
+      //   Remember to sever the connection from the removed node to the doubly linked list
+      poppedNode.prev = null;
+    }
+
+    this.length--;
+
+    return poppedNode;
+  }
 }
 
 list = new DoublyLinkedList();
 
 list.push("hello");
-console.log(list);
 list.push("!!");
+console.log(list);
+
+list.pop();
+
+console.log(list);
+
+
+list.pop();
+
+console.log(list);
+
+
+list.pop();
+
+console.log(list);
+
+
+list.pop();
+
 console.log(list);
