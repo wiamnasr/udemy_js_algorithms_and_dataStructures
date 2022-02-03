@@ -112,6 +112,22 @@
 
                 -   Return new list
 
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    GET PSEUDO-CODE
+                -----------------------------
+
+                - index < 0 || index >= list.length ? return null
+
+                - : Check index <= list.length/2 ? loop through the list starting from the head and loop towards middle, return node when found
+
+                - : Check index > list.length/2 ? loop through the list starting from the tail and loop towards the middle, return node when found
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -203,12 +219,39 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    var count, current;
+
+    if (index <= this.length / 2) {
+      console.log("Working from start...");
+      count = 0;
+      current = this.head;
+
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    } else {
+      console.log("Working from end...");
+      count = this.length - 1;
+      current = this.tail;
+
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+    }
+    return current;
+  }
 }
 
 list = new DoublyLinkedList();
 
-// list.push("hello");
-// list.push("!!");
+list.push("hello");
+list.push("!!");
 // console.log(list);
 
 // list.shift();
@@ -221,8 +264,11 @@ list = new DoublyLinkedList();
 
 list.unshift("hola");
 
-console.log(list);
+// console.log(list);
 
 list.unshift("bonjour");
 
-console.log(list);
+list.get(0);
+list.get(3);
+
+// console.log(list);
