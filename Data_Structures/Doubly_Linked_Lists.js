@@ -146,6 +146,30 @@
 
                 - : return false
 
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    INSERT PSEUDO-CODE
+                -----------------------------
+
+                - index < 0 || index >= list.length ? return false
+
+                - index === 0 ? unshift
+
+                - index === list.length ? push
+
+                - : use get method to access the item right before where we want to insert (index - 1)
+
+                - Set the next and prev properties on the correct nodes to link everything together
+
+                - Increment length
+
+                - Return true
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -274,6 +298,22 @@ class DoublyLinkedList {
     }
     return false;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+
+    var newNode = new Node(val);
+    var beforeNode = this.get(index - 1);
+    var afterNode = beforeNode.next;
+
+    (beforeNode.next = newNode), (newNode.prev = beforeNode);
+    (newNode.next = afterNode), (afterNode.prev = newNode);
+
+    this.length++;
+    return true;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -299,8 +339,13 @@ list.unshift("bonjour");
 // list.get(0);
 // list.get(3);
 
-console.log(list.set(-10, "test"));
+// console.log(list.set(-10, "test"));
 
-console.log(list.set(-10, "testToo"));
+// console.log(list.set(-10, "testToo"));
 
-console.log(list.set(2, "cool"));
+// console.log(list.set(2, "cool"));
+
+console.log(list.insert(0, "beginning"));
+console.log(list.insert(1, "middle"));
+console.log(list.insert(3, "end"));
+console.log(list);
