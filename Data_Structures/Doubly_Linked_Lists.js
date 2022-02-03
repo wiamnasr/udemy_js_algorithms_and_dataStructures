@@ -70,6 +70,48 @@
                 -   Return removed value
 
 
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    SHIFT PSEUDO-CODE
+                -----------------------------
+                
+                -   length === 0 || !head ? return undefined
+
+                -   : store curr head property in a var (old head)
+
+                -   Special case if len === 1 and we removed the last item, set head = null and tail = null
+
+                -   Otherwise, update head to be the .next of the old head
+
+                -   Set the new head's prev prop to null, set the old head's next to null
+
+                -   Decrement the length
+
+                -   Return the old head
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    UNSHIFT PSEUDO-CODE
+                -----------------------------
+
+                -   Create a new node with passed in value
+
+                -   len == 0 ? set head and tail to be new node
+
+                -   : set prev prop on the head of the list to be the new node, set the next prop on the new node to be the current head prop, update the head to be the new node
+
+                -    Increment length
+
+                -   Return new list
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -124,6 +166,44 @@ class DoublyLinkedList {
 
     return poppedNode;
   }
+
+  shift() {
+    if (this.length === 0) return undefined;
+
+    var oldHead = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+
+      this.head.prev = null;
+
+      oldHead.next = null;
+    }
+
+    this.length--;
+
+    return oldHead;
+  }
+
+  unshift(val) {
+      var newNode = new Node (val);
+
+      if (this.length === 0) {
+          this.head = newNode;
+          this.tail = newNode;
+
+      } else {
+          this.head.prev = newNode;
+          newNode.next = this.head;
+          this.head = newNode;
+      }
+      
+      this.length++;
+      return this;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -132,21 +212,18 @@ list.push("hello");
 list.push("!!");
 console.log(list);
 
-list.pop();
+list.shift();
 
 console.log(list);
 
-
-list.pop();
-
-console.log(list);
-
-
-list.pop();
+list.shift();
 
 console.log(list);
 
+list.shift();
 
-list.pop();
+console.log(list);
+
+list.shift();
 
 console.log(list);
