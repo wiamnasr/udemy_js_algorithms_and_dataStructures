@@ -170,6 +170,33 @@
 
                 - Return true
 
+
+
+
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    REMOVE PSEUDO-CODE
+                -----------------------------
+
+                - index < 0 || index >= list.length ? return undefined
+
+                - index === 0 ? shift
+
+                - index === list.length - 1 ? use pop
+
+                - : use get method to retrieve the item to be removed
+
+                - Update the next and prev properties to remove the found node from the list
+
+                - Set the next and prev on the found node to null
+
+                - Decrement the length
+
+                - Return the removed node
+
+
 */
 
 // Setting up the 2 classes for the doubly linked list
@@ -314,6 +341,28 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    var removedNode = this.get(index);
+    var beforeNode = removedNode.prev;
+    var afterNode = removedNode.next;
+
+    beforeNode.next = afterNode;
+    afterNode.prev = beforeNode;
+
+    // removedNode.prev.next = removedNode.next;
+    // removedNode.next.prev = removedNode.prev;
+
+    removedNode.next = null;
+    removedNode.prev = null;
+
+    this.length--;
+    return removedNode;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -345,7 +394,22 @@ list.unshift("bonjour");
 
 // console.log(list.set(2, "cool"));
 
-console.log(list.insert(0, "beginning"));
-console.log(list.insert(1, "middle"));
-console.log(list.insert(3, "end"));
-console.log(list);
+// console.log(list.insert(0, "beginning"));
+// console.log(list.insert(1, "middle"));
+console.log(list.remove(1));
+// console.log(list);
+
+/*
+          _____________________________________________________________________________________________
+
+          Big O of Doubly Linked Lists
+
+            - Insertion: O(1)
+
+            - Removal: O(1)
+
+            - Searching: O(N) => still O(N) even though technically its O(N/2)
+
+            - Access: O(N)
+            
+*/
