@@ -130,3 +130,18 @@ console.log(stack);
 
 stack.pop();
 console.log(stack);
+
+/*
+          _____________________________________________________________________________________________
+
+          Big O of Stacks
+
+            - Insertion: O(1)
+
+            - Removal: O(1)
+
+            - Searching: O(N)
+
+            - Access: O(N)
+            
+*/
