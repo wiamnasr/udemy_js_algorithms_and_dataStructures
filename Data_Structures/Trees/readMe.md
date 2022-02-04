@@ -107,7 +107,21 @@ tree.root = new Node(20);
 
 <p>Depth first search traverse nodes vertically, down to the end of the tree, before visiting sibling nodes</p>
 
-> ###
+<br></br>
+
+<h2>Breadth First Search BFS VS Depth First Search DFS When to use What?</h2>
+
+> ### It depends on the tree, if it was flashed out (wide tree), to avoid space complexity, it s better to use breadth first search
+
+> ### Else if the tree was deep (vertically long) => we use depth first search
+
+<br></br>
+
+<h2>Depth First Search DFS When to use Pre, Post or In Order?</h2>
+
+> ### Example InOrder gets us all the data in order, from lowest to highest, do ideal when you want to get the set of all nodes in order
+
+> ### PreOrder helps us get a list that is useful if we are trying to clone/duplicate/store the tree, to re-create it later
 
 ```JavaScript
 
