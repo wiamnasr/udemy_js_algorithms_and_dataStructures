@@ -123,6 +123,30 @@ tree.root = new Node(20);
 
 > ### PreOrder helps us get a list that is useful if we are trying to clone/duplicate/store the tree, to re-create it later
 
+<br></br>
+
+<hr></hr>
+
+<br></br>
+<br></br>
+
+<h2>Heaps</h2>
+
+<p>Heaps are another category of trees, everything that applied to trees, in general, applies to heaps. There are however special considerations/rules. Will focus on Binary Heaps, that have 2 different types that will be discussed</p>
+
+<ul>
+    <li>What is a Binary Heap?</li>
+    <li>How to compare and contrast min and max heaps?</li>
+    <li>How to implement basic methods on heaps?</li>
+    <li>Where are Heaps used?</li>
+    <li>What other data structures can be constructed from heaps?</li>
+    <li>How to implement a priority queue?</li>
+</ul>
+
+<br></br>
+
+<p>A Binary heap is very similar to a binary search tree, with some differences:<br></br>-   In a MaxBinaryHeap, parent nodes are always larger than child nodes -> There are no guarantees across the siblings (no implied ordering)<br></br>-   In a MinBinaryHeap, parent nodes are always smaller than child nodes -> There are no guarantees across the siblings (no implied ordering)<br></br>- Each node has 2 children (binary), but there is no order to the left child versus the right (like the one in binary search tree)<br></br>-    A binary heap is as compact as possible -> All the children of each node are as full as they can be, left children are filled out first </p>
+
 ```JavaScript
 
 
