@@ -84,7 +84,24 @@ tree.root = new Node(20);
 
 ```
 
-<p></p>
+<hr></hr>
+    
+<br></br>
+<br></br>
+
+<h2>Tree Traversal</h2>
+
+### There are two ways of traversing a tree:
+
+> #### Breadth-first Search
+
+> #### Depth-first Search
+
+<br></br>
+
+<h2>Breadth First Search BFS</h2>
+
+<p>Breadth first search means that we want to visit every node on the same level, every sibling node before we look at a child node</p>
 
 > ###
 
