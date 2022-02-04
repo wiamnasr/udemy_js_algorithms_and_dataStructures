@@ -10,6 +10,11 @@
         Breadth first search means that we want to visit every node on the same level, every sibling node before we look at a child node
 
 
+    -   Depth First Search DFS:
+        
+        Depth first search traverse nodes vertically, down to the end of the tree, before visiting sibling nodes
+
+
     ___________________________________________________________________________________________
 
     
@@ -30,6 +35,30 @@
                         >   If there's a right property on the node dequeued, add it to the queue
 
                 -   Return the variable that stores the values
+
+    ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    DFS - PreOrder PSEUDO-CODE
+                -----------------------------
+                ***Recursively
+
+                -   Create a var to store the values visited
+
+                -   Create a curr var to store the root of the tree in there
+
+                -   Write a helper function which accepts a node
+
+                        >   Push the value of the node to the var that stores the values
+
+                        >   If the node has a left property, call the helper function with the left property on the node
+
+                        >   If the node has a right property, call the helper function with the right property on the node
+
+                -   Invoke the helper function with the current variable
+
+                -   Return the array of values
 
 
 */
@@ -120,8 +149,25 @@ class BinarySearchTree {
     }
     return data;
   }
-}
 
+  //   Depth First Search - Pre-Order
+  DFSPreOrder() {
+    var data = [];
+
+    var current = this.root;
+
+    function traverse(node) {
+      data.push(node.value);
+
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+
+    return data;
+  }
+}
 
 var tree = new BinarySearchTree();
 
@@ -134,3 +180,5 @@ tree.insert(23);
 tree.insert(11);
 
 console.log(tree.BFS());
+
+console.log(tree.DFSPreOrder());

@@ -101,7 +101,11 @@ tree.root = new Node(20);
 
 <h2>Breadth First Search BFS</h2>
 
-<p>Breadth first search means that we want to visit every node on the same level, every sibling node before we look at a child node</p>
+<p>Breadth first search means that we want to visit every node on the same level, every sibling node before we look at a child</p>
+
+<h2>Depth First Search DFS</h2>
+
+<p>Depth first search traverse nodes vertically, down to the end of the tree, before visiting sibling nodes</p>
 
 > ###
 
