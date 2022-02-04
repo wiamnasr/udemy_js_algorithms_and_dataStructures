@@ -40,6 +40,26 @@
 
                 -   Return the size
 
+                   
+            ___________________________________________________________________________________________
+
+    
+                -----------------------------
+                    POP PSEUDO-CODE
+                -----------------------------
+
+                -   No nodes in the stack ? return null
+
+                -   : take whatever the first property is  on the stack, store it in a var to return at the very end
+
+                -   If there s only one node, set the first and last property to be null
+
+                -   More than one node ? set the first prop to be the next property on the current first
+
+                -   Decrement the size by 1
+                
+                -   Return the value of the node removed
+
                 
 
 */
@@ -72,4 +92,41 @@ class Stack {
 
     return ++this.size;
   }
+
+  pop() {
+    if (!this.first) return null;
+
+    var temp = this.first;
+
+    if (this.first === this.last) {
+      this.last = null;
+    }
+
+    //   this way we are setting first to be null as well
+    this.first = this.first.next;
+
+    this.size--;
+
+    return temp.val;
+  }
 }
+
+const stack = new Stack();
+
+stack.push("1");
+console.log(stack);
+
+stack.push("2");
+console.log(stack);
+
+stack.push("3");
+console.log(stack);
+
+stack.pop();
+console.log(stack);
+
+stack.pop();
+console.log(stack);
+
+stack.pop();
+console.log(stack);
